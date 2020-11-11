@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Radiogaga0/Node_Project_1#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "socket.io": "^3.0.1"
   }
 }
