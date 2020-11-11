@@ -23,6 +23,14 @@ let io = socket(server);
 //telling socket to execute the function newConnection when there is a specific message
 io.on("connection", newConnection);
 
-function newConnection(_socket){
-  console.log("new connection: " + _socket.client.id);
+//instructions related to all connections
+function newConnection(socket){
+  //print id of connection
+  console.log("new connection: " + socket.client.id);
+  //when mouse type message received execute the following function
+  socket.on("mouse", mouseMessage);
+
+  function mouseMessage(dataReceived){
+    console.log(dataReceived);
+  }
 }
