@@ -1,9 +1,17 @@
 let socket = io();
 
 socket.on("connect", newConnection);
+socket.on("mouseBroadcast", drawOtherMouse);
 
 function newConnection(){
   console.log("your id: " + socket.id);
+}
+
+//this function will contain instruction on what to do when receiving the message back from server
+function drawOtherMouse(data){
+  noStroke();
+  fill("yellow");
+  ellipse(data.x, data.y, 20);
 }
 
 function preload(){
@@ -23,6 +31,8 @@ function draw() {
 
 //draw circle with mouse
 function mouseMoved(){
+  noStroke();
+  fill("white");
   ellipse(mouseX, mouseY, 20);
 
   //create message for server

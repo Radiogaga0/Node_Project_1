@@ -31,6 +31,9 @@ function newConnection(socket){
   socket.on("mouse", mouseMessage);
 
   function mouseMessage(dataReceived){
-    console.log(dataReceived);
+    console.log(socket.client.id, dataReceived);
+
+    //sending the message back to all the clients except the one who sent it
+    socket.broadcast.emit("mouseBroadcast", dataReceived);
   }
 }
