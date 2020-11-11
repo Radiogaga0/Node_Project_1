@@ -27,6 +27,13 @@ io.on("connection", newConnection);
 function newConnection(socket){
   //print id of connection
   console.log("new connection: " + socket.client.id);
+
+  //define client circle color
+  let clientColor = getRandomColor();
+
+  //broadcast random color
+  socket.emit("color", clientColor);
+
   //when mouse type message received execute the following function
   socket.on("mouse", mouseMessage);
 
@@ -36,4 +43,14 @@ function newConnection(socket){
     //sending the message back to all the clients except the one who sent it
     socket.broadcast.emit("mouseBroadcast", dataReceived);
   }
+}
+
+//function to get random colors
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
