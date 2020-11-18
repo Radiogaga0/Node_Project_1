@@ -9,8 +9,8 @@ let socket = require("socket.io");
 //executing the packages
 let app = express();
 
-//creating a local host
-let port = 3000;
+//choosing the port which in this case is assigned by horuku or our local host
+let port = process.env.PORT || 3000;
 
 app.use(express.static("public"));
 
