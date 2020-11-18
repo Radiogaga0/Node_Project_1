@@ -4,6 +4,24 @@ let myColor = "white";
 socket.on("connect", newConnection);
 socket.on("mouseBroadcast", drawOtherMouse);
 socket.on("color", setColor);
+socket.on("newPlayer", newPlayer);
+
+//receive other player color
+function newPlayer(newPlayerColor) {
+  console.log(newPlayerColor);
+
+  push();
+  fill("red");
+  rectMode(CENTER);
+  noStroke();
+  rect(width/2, height/2, width, 50);
+
+  textSize(30);
+  textAlign("center");
+  fill(newPlayerColor);
+  text("New player joined: " + newPlayerColor, width/2, height/2);
+  pop();
+}
 
 //receive color assigned randomly to client
 function setColor(assignedColor){
@@ -24,14 +42,21 @@ function drawOtherMouse(data){
 }
 
 function preload(){
-  // put preload code here
+
 }
 
 function setup() {
   createCanvas(windowWidth,windowHeight)
 
   background("red");
-  // put setup code here
+
+  //add a welcome message
+  push();
+  textSize(30);
+  textAlign("center");
+  fill(myColor);
+  text("Welcome" + myColor, width/2, height/2);
+  pop();
 }
 
 function draw() {

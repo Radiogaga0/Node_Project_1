@@ -34,6 +34,9 @@ function newConnection(socket){
   //broadcast random color
   socket.emit("color", clientColor);
 
+  //send color to all other clients
+  socket.broadcast.emit("newPlayer", clientColor);
+
   //when mouse type message received execute the following function
   socket.on("mouse", mouseMessage);
 
